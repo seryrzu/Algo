@@ -11,3 +11,13 @@
 ## More:
 
   * BitHacks: submasks $3^n$
+
+## Building:
+
+~~~~~
+./autogen.sh # required only after checkout
+make
+make check
+~~~~~
+
+Also remember to `make clean` before commiting. 
