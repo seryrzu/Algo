@@ -8,5 +8,6 @@ AC_PROG_LIBTOOL
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([data-structures-1/Makefile])
+AC_CONFIG_FILES([sorting/Makefile])
 AC_OUTPUT
 
