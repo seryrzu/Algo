@@ -31,11 +31,3 @@ void heap_sort() {
   }
 }
 
-int main() {
-	scanf("%d", &n);
-	forn(i, n)
-		scanf("%d", &a[i]);
-	heap_sort();
-	forn(i, n)
-		printf("%d ", a[i]);
-}
