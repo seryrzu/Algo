@@ -2,7 +2,7 @@
 
 lib_LTLIBRARIES = libsorting.la
 
-libsorting_la_SOURCES = merge_sort.cpp heapsort.cpp quicksort.cpp
+libsorting_la_SOURCES = merge_sort.cpp heapsort.cpp quicksort.cpp radixsort.cpp
 
 # Unit test
 
