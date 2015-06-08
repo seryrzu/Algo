@@ -1,0 +1,75 @@
+\documentclass[11pt,draft]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[final]{graphicx}
+%\usepackage{amssymb}
+%\usepackage{amsmath}
+%%
+
+\usepackage{latexsym,amssymb,amsthm}
+\usepackage{amsfonts}
+%\usepackage[T2A]{fontenc}
+\usepackage{amsmath}
+
+
+\usepackage{indentfirst}
+
+ \voffset -24.5mm
+ \hoffset -5mm
+ \textwidth 173mm
+ \textheight 240mm
+ \oddsidemargin=0mm \evensidemargin=0mm
+
+\newtheorem{theorem}{Теорема}[section]
+\begin{document}
+\title{Рекуррентные соотношения}
+\maketitle
+Есть три стандартных способа решения рекуррентных соотношений:
+\begin{enumerate}
+  \item Метод подстановки (substitution method);
+  \item Метод итераций (iteration method);
+  \item Основная теорема о рекуррентных соотношениях (master theorem).
+\end{enumerate}
+
+Метод постановки основан на простой идее: угадать ответ и затем доказать его по индукции.
+Приведем пример:
+\begin{gather*}
+  T(n) = 2 T(\lfloor n / 2 \rfloor) + n.
+\end{gather*}
+Предполагаем, что $T(n) = \mathcal O( n \log n)$.
+Пусть эта оценка верна для $\lfloor n / 2 \rfloor$.
+Тогда
+\begin{equation}
+  T(n) \leqslant 2 ( c \lfloor n / 2 \rfloor \log(\lfloor n / 2 \rfloor) + n
+  \leqslant cn \log (n / 2) + n = cn \log n - cn \log 2 + n = cn \log n - cn + n 
+\end{equation}
+
+Метод итерации заключается в преобразовании рекуррентного соотношения в сумму. Часто первые несколько членов
+помогают угадать ответ, который потом можно доказать по индукции (это может оказаться проще, чем расписывать всю сумму целиком <<до конца>>).
+
+Главный интерес для нас сейчас представляет следующая теорема, которая имеет место для соотношений вида
+\begin{gather}
+  \label{main_recur}
+  T(n) = aT(n / b) + f(n),
+\end{gather}
+где $a \geqslant 1$, $b > 1$ --- некоторые постоянные, а $f$ --- НСНМ положительная функция.
+Такое соотношение возникает, если алгоритм разбивает задачу размера $n$ на $a$ подзадач размера $n / b$, при этом совершая $f(n)$ дополнительной работы
+(например, объединение результатов).
+
+В качества примера вспомним про {\cal Merge-Sort}: $a = b = 2$, $f(n) = \Theta(n)$.
+
+Можно показать, что об округлении допустимо не заботиться.
+\begin{theorem}[Основная теорема о рекуррентных соотношениях]
+ Пусть рекурректное соотношение определено формулой  
+ \eqref{main_recur}. Тогда:
+ \begin{enumerate}
+   \item Если  $f(n) = \mathcal O\left(n^{\log_b a-\varepsilon}\right)$ для некоторого $\varepsilon > 0$, то
+     $T(n) = \Theta\left(n^{\log_b a}\right)$.
+   \item Если $f(n) =  \Theta \left(n^{\log_b a}\right)$, то $T(n) = \Theta\left(n^{\log_b n} \log_2 n \right)$.
+   \item Если $f(n) = \Omega \left(n^{\log_b a + \varepsilon} \right)$ для некоторого $\varepsilon > 0$ и если $a f(n / b) \leqslant c f(n)$
+     для некоторой константы $c < 1$ и достаточно больших $n$, то $T(n) = \Theta(f(n))$.
+ \end{enumerate}
+\end{theorem}
+
+\end{document}
+
