@@ -1,5 +1,6 @@
 SUBDIRS = data-structures-1 \
-	  sorting
+	  sorting \
+		Algebra
 
 docs:
 	./mdpdf.sh algo.md
